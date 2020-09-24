@@ -1,1 +1,2 @@
-# Alice
+# Telegramm Rather game bot
+
