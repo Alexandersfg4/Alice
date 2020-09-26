@@ -16,7 +16,7 @@ Questions are a good way to get to know people and provoke interesting conversat
 <br><code>pip install logging</code></br>
 
 <h2>Getting started</h2>
-1. Edit config.cfg 
-2. Start the bot by <code>python main.py>
+<br>1. Edit config.cfg </br>
+2. Start the bot by <code>python main.py
   
 <h2>Features</h2>
