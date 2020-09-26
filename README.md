@@ -20,3 +20,4 @@ Questions are a good way to get to know people and provoke interesting conversat
 2. Start the bot by <code>python main.py
   
 <h2>Features</h2>
+![alt text](http://url/to/https://github.com/Alexandersfg4/Rather_bot/blob/master/Screenshot%202020-09-26%20at%2013.42.25.png)
