@@ -3,7 +3,7 @@ Telegram Rather game bot written by Python's pyTelegramBotAPI.
 Questions are a good way to get to know people and provoke interesting conversation. Here are 300+ questions that are sure to add spark to any social gathering.
 
 <h2>Requirements</h2>
-1. Remoute server with public IP (For example: AWS)
+<br>1. Remoute server with public IP (For example: AWS)</br>
 2. The server should have Using self-signed certificate(https://core.telegram.org/bots/self-signed)
 
 <h2>Installing</h2><br>
