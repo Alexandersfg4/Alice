@@ -10,8 +10,9 @@ Questions are a good way to get to know people and provoke interesting conversat
 1. The server should have Using self-signed certificate(https://core.telegram.org/bots/self-signed)
 
 ## Installing
+```
 git clone https://github.com/Alexandersfg4/Rather_bot.git
-
+```
 
 ## Dependencies
 ```
