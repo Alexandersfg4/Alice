@@ -9,11 +9,11 @@ logging.basicConfig(filename='bot.log', level=logging.DEBUG, format='%(asctime)s
 config = configparser.ConfigParser()
 config.read('config.cfg')
 WEBHOOK_HOST = config.get('Settings', 'WEBHOOK_HOST')
-WEBHOOK_PORT = config.getint('Settings', 'WEBHOOK_PORT')  # 443, 80, 88 или 8443 (порт должен быть открыт!)
+WEBHOOK_PORT = config.getint('Settings', 'WEBHOOK_PORT')  # 443, 80, 88 or 8443 (port should be oppened!)
 WEBHOOK_LISTEN = config.get('Settings',
-                            'WEBHOOK_LISTEN')  # На некоторых серверах придется указывать такой же IP, что и выше
-WEBHOOK_SSL_CERT = config.get('Settings', 'WEBHOOK_SSL_CERT')  # Путь к сертификату
-WEBHOOK_SSL_PRIV = config.get('Settings', 'WEBHOOK_SSL_PRIV')  # Путь к приватному ключу
+                            'WEBHOOK_LISTEN')  
+WEBHOOK_SSL_CERT = config.get('Settings', 'WEBHOOK_SSL_CERT')  
+WEBHOOK_SSL_PRIV = config.get('Settings', 'WEBHOOK_SSL_PRIV')  
 WEBHOOK_URL_BASE = "https://%s:%s" % (WEBHOOK_HOST, WEBHOOK_PORT)
 WEBHOOK_URL_PATH = "/%s/" % (config.get('Settings', 'token'))
 bot = telebot.TeleBot(config.get('Settings', 'token'))
@@ -34,7 +34,7 @@ class WebhookServer(object):
         else:
             raise cherrypy.HTTPError(403)
 
-# По команде /reset будем сбрасывать состояния, возвращаясь к началу диалога
+# /reset reset all progress
 @bot.message_handler(commands=["reset"])
 def cmd_reset(message):
     db = db_creator.SQLighter(config.get('Settings', 'db_name'))
@@ -59,9 +59,9 @@ def cmd_reset(message):
     db.close()
 
 
- # Собственно, запуск!
+ # RUN!
 if __name__ == "__main__":
-    # Начало диалога
+    # Initial dialog
     @bot.message_handler(commands=["start"])
     def cmd_start(message):
         db = db_creator.SQLighter(config.get('Settings', 'db_name'))
@@ -75,12 +75,13 @@ if __name__ == "__main__":
             logging.info(f'The next user {message.chat.id} has been registered')
             db.close()
 
-    # Снимаем вебхук перед повторной установкой (избавляет от некоторых проблем)
+    # Take out webhook!
     bot.remove_webhook()
-    # Ставим заново вебхук
+    # Place webhook!
     bot.set_webhook(url=WEBHOOK_URL_BASE + WEBHOOK_URL_PATH,
                     certificate=open(WEBHOOK_SSL_CERT, 'r'))
-    # Указываем настройки сервера CherryPy
+    
+    # Settings of the server CherryPy
     cherrypy.config.update({
         'server.socket_host': WEBHOOK_LISTEN,
         'server.socket_port': WEBHOOK_PORT,
