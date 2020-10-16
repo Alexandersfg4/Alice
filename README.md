@@ -23,3 +23,8 @@ pip install logging
 ## Getting started
 1. Edit config.cfg
 1. Start the bot by *python main.py*
+
+## Contacts
+```
+alexanderbortnikov@mail.com
+```
